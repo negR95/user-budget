@@ -1,8 +1,12 @@
 import "./App.css";
-import AvailableProducts from "./Components/AvailableProducs";
+import UserBudget from "./Components/UserBudget";
 
 function App() {
-  return <AvailableProducts value={3000} />;
+  return (
+    <div>
+      <UserBudget />
+    </div>
+  );
 }
 
 export default App;
