@@ -1,7 +1,6 @@
 import { Component } from "react";
 
 export default class BudgetInput extends Component {
-
   handleInputChange = (e) => {
     this.props.onInputChange(e.target.value);
   };
@@ -16,7 +15,7 @@ export default class BudgetInput extends Component {
           type="text"
           value={this.props.value}
           onChange={this.handleInputChange}
-        ></input>
+        />
       </fieldset>
     );
   }

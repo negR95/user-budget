@@ -11,37 +11,39 @@ export default class UserBudget extends Component {
     };
   }
 
-  handleTomanInputChange = (value) => {
-    this.setState({ value });
-  };
-
-  handleDollarInputChange = (value) => {
-    const toman = this.convertDollarToToman(value);
-    this.setState({ value: toman });
+  handleInputChange = (currency, value) => {
+    this.setState({
+      value:
+        currency === "dollar"
+          ? this.convertDollarToToman(+value).toString()
+          : value,
+    });
   };
 
   convertTomanToDollar(toman) {
-    return toman * 30000;
+    return toman / 30000;
   }
 
   convertDollarToToman(dollar) {
-    return dollar / 30000;
+    return dollar * 30000;
   }
 
   render() {
     const valueInToman = this.state.value;
-    const valueInDollar = this.convertDollarToToman(this.state.value);
+    const valueInDollar = this.convertTomanToDollar(valueInToman);
+
     return (
       <div>
         <BudgetInput
           currency="Toman"
           value={valueInToman}
-          onInputChange={this.handleTomanInputChange}
+          onInputChange={(value) => this.handleInputChange("toman", value)}
         />
+
         <BudgetInput
           currency="Dollar"
           value={valueInDollar}
-          onInputChange={this.handleDollarInputChange}
+          onInputChange={(value) => this.handleInputChange("dollar", value)}
         />
 
         <fieldset>
